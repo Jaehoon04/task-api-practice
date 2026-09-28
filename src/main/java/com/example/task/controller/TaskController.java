@@ -11,11 +11,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/tasks")
 public class TaskController {
-    @GetMapping
-    public List<Task> GetTask(){
-        return taskService.getTasks();
-    }
-
     private final TaskService taskService;
     public TaskController(TaskService taskService){
         this.taskService = taskService;
@@ -24,6 +19,11 @@ public class TaskController {
     @PostMapping
     public Task createTask(@RequestBody TaskCreateRequest request){
         return taskService.createTask(request.getTitle(),request.getDescription());
+    }
+
+    @GetMapping
+    public List<Task> GetTask(){
+        return taskService.getTasks();
     }
 
     @GetMapping("/{id}")
