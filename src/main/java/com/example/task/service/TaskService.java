@@ -3,6 +3,7 @@ package com.example.task.service;
 
 import com.example.task.domain.Task;
 import com.example.task.dto.TaskCreateRequest;
+import com.example.task.exception.TaskNotFoundException;
 import com.example.task.repository.TaskRepository;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +28,8 @@ public class TaskService {
     }
 
     public Task getTask(Long id){
-        return taskRepository.findById(id).orElseThrow();
+        return taskRepository.findById(id).orElseThrow(()->new TaskNotFoundException("Task를 찾을 수 없습니다."));
+
 
     }
 
