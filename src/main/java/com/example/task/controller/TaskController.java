@@ -2,6 +2,7 @@ package com.example.task.controller;
 
 import com.example.task.domain.Task;
 import com.example.task.dto.TaskCreateRequest;
+import com.example.task.dto.TaskResponse;
 import com.example.task.dto.TaskUpdateRequest;
 import com.example.task.service.TaskService;
 import org.springframework.web.bind.annotation.*;
@@ -17,22 +18,22 @@ public class TaskController {
     }
 
     @PostMapping
-    public Task createTask(@RequestBody TaskCreateRequest request){
+    public TaskResponse createTask(@RequestBody TaskCreateRequest request){
         return taskService.createTask(request.getTitle(),request.getDescription());
     }
 
     @GetMapping
-    public List<Task> GetTask(){
+    public List<TaskResponse> GetTask(){
         return taskService.getTasks();
     }
 
     @GetMapping("/{id}")
-    public Task getTask(@PathVariable Long id){
+    public TaskResponse getTask(@PathVariable Long id){
         return taskService.getTask(id);
     }
 
     @PutMapping("/{id}")
-    public Task updateTask(@PathVariable long id, @RequestBody TaskUpdateRequest request){
+    public TaskResponse updateTask(@PathVariable long id, @RequestBody TaskUpdateRequest request){
         return taskService.updateTask(id, request.getTitle(), request.getDescription());
     }
 
