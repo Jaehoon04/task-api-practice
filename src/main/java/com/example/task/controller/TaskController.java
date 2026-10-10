@@ -6,6 +6,7 @@ import com.example.task.dto.TaskResponse;
 import com.example.task.dto.TaskUpdateRequest;
 import com.example.task.service.TaskService;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,7 +19,9 @@ public class TaskController {
         this.taskService = taskService;
     }
 
+
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public TaskResponse createTask(@Valid @RequestBody TaskCreateRequest request){
         return taskService.createTask(request.getTitle(),request.getDescription());
     }
@@ -39,6 +42,7 @@ public class TaskController {
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteTask(@PathVariable long id){
         taskService.deleteTask(id);
     }
