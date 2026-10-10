@@ -2,7 +2,9 @@ package com.example.task.dto;
 
 import com.example.task.domain.Task;
 import com.example.task.domain.TaskStatus;
+import lombok.Getter;
 
+@Getter
 public class TaskResponse {
     private Long id;
     private String title;
@@ -15,24 +17,4 @@ public class TaskResponse {
         this.description = description;
         this.status = staus;
     }
-
-    public long getId() {
-        return id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public TaskStatus getStatus() {
-        return status;
-    }
-
-
-
-
 }
